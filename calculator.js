@@ -34,13 +34,15 @@ function updateEdit(int){
     result.innerText = edit;
 }
 
+// Resets calculation, clearing result screen
 function clearEdit(){
+    curr = 0;
     edit = 0;
     currEdit = false;
     result.innerText = edit;
 }
 
-//It's like pressing backspace; it'll delete the last character typed. 
+// It's like pressing backspace; it'll delete the last character typed. 
 // If it's clicked when there's only one digit, it sets the current number to be 0.
 function backInt(){
     if(edit == 0){
