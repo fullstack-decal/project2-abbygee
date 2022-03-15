@@ -8,22 +8,22 @@
     <div class="calc">
       <section class="result-screen">0</section>
       <div class="calc-rows">
-        <button class="buttons" id="zero-button">0</button>
+        <button class="buttons" onclick="updateEdit(0)" id="zero-button">0</button>
         <button class="buttons" id="last-buttons">=</button>
-        <button class="buttons" id="one-button">1</button>
-        <button class="buttons" id="two-button">2</button>
-        <button class="buttons" id="three-button">3</button>
+        <button class="buttons" onclick="updateEdit(1)" id="one-button">1</button>
+        <button class="buttons" onclick="updateEdit(2)" id="two-button">2</button>
+        <button class="buttons" onclick="updateEdit(3)" id="three-button">3</button>
         <button class="buttons" id="last-buttons">+</button>
         <button class="buttons" onclick="updateEdit(4)" id="four-button">4</button>
-        <button class="buttons" id="five-button">5</button>
+        <button class="buttons" onclick="updateEdit(5)" id="five-button">5</button>
         <button class="buttons" onclick="updateEdit(6)">6</button>
         <button class="buttons" id="last-buttons">-</button>
-        <button class="buttons">7</button>
-        <button class="buttons">8</button>
-        <button class="buttons">9</button>
+        <button class="buttons" onclick="updateEdit(7)">7</button>
+        <button class="buttons" onclick="updateEdit(8)">8</button>
+        <button class="buttons" onclick="updateEdit(9)">9</button>
         <button class="buttons" id="last-buttons">x</button>
-        <button class="buttons" id="c-button">C</button>
-        <button class="buttons">←</button>
+        <button class="buttons" onclick="clearEdit()" id="c-button">C</button>
+        <button class="buttons" onclick="backInt()">←</button>
         <button class="buttons" id="last-buttons">÷</button>
       </div>
     </div>
