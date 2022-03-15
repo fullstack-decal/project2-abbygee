@@ -3,35 +3,84 @@
 //Global Scope Definitions
 let curr = 0; // our current total/result
 let edit = 0; // number user wants to add, multiply, etc. to current total
-const button = document.getElementById("five-button");
 const result = document.querySelector(".result-screen"); // result screen on calculator
 let currEdit = false; // True if user is still typing a number (more than 1 digit), False if result-screen is displaying curr
+let currFunc = "";
 
-// button.addEventListener("click", add);
+// Edge cases/functions I assumed we don't have to account for (judging from spec):
 
-// function add(){
-//     strNum = button.textContent;
-//     intNum = parseInt(strNum);
-//     updateTotal(5);
-// }
+// When user clicks a number after an equals operation (they should just use the clear button)
+// When user backspaces after an equals operation (they should again use the clear button, and input the number they want)
 
-// function updateTotal(toAdd){
-//     curr += toAdd;
-//     result.innerText = curr;
-// }
+// Traditional iOS calculator will keep performing the same operation with the same input if operation button is clicked continuously 
+//      (if we must use the equals button to perform the operation then this is not possible)
+
+function add(){
+    currFunc = "add";
+    currEdit = true;
+}
+
+function mul(){
+    currFunc = "mul"
+    currEdit = true;
+}
+
+function div(){
+    currFunc = "div"
+    currEdit = true;
+}
+
+function sub(){
+    currFunc = "sub"
+    currEdit = true;
+}
+
+function equalSign(){
+    switch (currFunc){
+        case "add":
+            curr += edit
+            break;
+        case "sub":
+            curr -= edit;
+            break;
+        case "div":
+            curr = curr / edit;
+            break;
+        case "mul":
+            curr = curr * edit;
+            break;
+        default:
+            console.log("no operation!?");
+    }
+    edit = 0;
+    result.innerText = curr;
+    currFunc = "";
+}
 
 function updateEdit(int){
-    currEdit = true;
-    if(edit == 0){
-        edit = int;
+    if (currEdit === false){
+        if(curr == 0){
+            curr = int;
+        } else {
+            strNum = curr.toString();
+            strInt = int.toString();
+            strNum = strNum.concat(strInt);
+    
+            curr = parseInt(strNum);
+        }
+        result.innerText = curr;
     } else {
-        strNum = edit.toString();
-        strInt = int.toString();
-        strNum = strNum.concat(strInt);
+        if(edit == 0){
+            edit = int;
+        } else {
+            strNum = edit.toString();
+            strInt = int.toString();
+            strNum = strNum.concat(strInt);
 
-        edit = parseInt(strNum);
+            edit = parseInt(strNum);
+        }
+        result.innerText = edit;
     }
-    result.innerText = edit;
 }
 
 // Resets calculation, clearing result screen
@@ -39,7 +88,8 @@ function clearEdit(){
     curr = 0;
     edit = 0;
     currEdit = false;
-    result.innerText = edit;
+    currFunc = "";
+    result.innerText = 0;
 }
 
 // It's like pressing backspace; it'll delete the last character typed. 
